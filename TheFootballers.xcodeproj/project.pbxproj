@@ -7,14 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094909F41E3BD9B30054CF75 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909F31E3BD9B30054CF75 /* SignUpViewController.swift */; };
+		094909F81E3BF0870054CF75 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909F71E3BF0870054CF75 /* Toast.swift */; };
+		094909FA1E3CC3110054CF75 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909F91E3CC3110054CF75 /* HomePageViewController.swift */; };
+		094909FC1E3CC5660054CF75 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909FB1E3CC5660054CF75 /* ExtensionUIView.swift */; };
+		094909FE1E3CD0EE0054CF75 /* AddAllPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909FD1E3CD0EE0054CF75 /* AddAllPlayersViewController.swift */; };
+		09490A001E3E15320054CF75 /* CaptainsSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094909FF1E3E15320054CF75 /* CaptainsSelectViewController.swift */; };
+		09490A021E3E35760054CF75 /* SelectPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09490A011E3E35760054CF75 /* SelectPlayersViewController.swift */; };
+		09490A041E3E37030054CF75 /* PlayersOnFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09490A031E3E37030054CF75 /* PlayersOnFieldViewController.swift */; };
+		09490A061E3EA9A90054CF75 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09490A051E3EA9A90054CF75 /* TimerViewController.swift */; };
 		09632B6A1E3B7E860066CA09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09632B691E3B7E860066CA09 /* AppDelegate.swift */; };
 		09632B6C1E3B7E860066CA09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09632B6B1E3B7E860066CA09 /* ViewController.swift */; };
 		09632B6F1E3B7E860066CA09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09632B6D1E3B7E860066CA09 /* Main.storyboard */; };
 		09632B711E3B7E860066CA09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09632B701E3B7E860066CA09 /* Assets.xcassets */; };
 		09632B741E3B7E860066CA09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09632B721E3B7E860066CA09 /* LaunchScreen.storyboard */; };
+		09632B7C1E3B82F10066CA09 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09632B7B1E3B82F10066CA09 /* GoogleService-Info.plist */; };
+		09E56A481E43864A00E21FAB /* SignInToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E56A471E43864A00E21FAB /* SignInToGroupViewController.swift */; };
+		09E56A4A1E49B1CE00E21FAB /* GroupSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E56A491E49B1CE00E21FAB /* GroupSelectionViewController.swift */; };
+		EA9C83BEF2523DAE73854B0B /* Pods_TheFootballers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7237AEE2DB29EB059317211C /* Pods_TheFootballers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		094909F31E3BD9B30054CF75 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		094909F71E3BF0870054CF75 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		094909F91E3CC3110054CF75 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		094909FB1E3CC5660054CF75 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
+		094909FD1E3CD0EE0054CF75 /* AddAllPlayersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAllPlayersViewController.swift; sourceTree = "<group>"; };
+		094909FF1E3E15320054CF75 /* CaptainsSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptainsSelectViewController.swift; sourceTree = "<group>"; };
+		09490A011E3E35760054CF75 /* SelectPlayersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlayersViewController.swift; sourceTree = "<group>"; };
+		09490A031E3E37030054CF75 /* PlayersOnFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayersOnFieldViewController.swift; sourceTree = "<group>"; };
+		09490A051E3EA9A90054CF75 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		09490A071E406ADF0054CF75 /* TheFootballers-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TheFootballers-Bridging-Header.h"; sourceTree = "<group>"; };
+		09490A0A1E40F4040054CF75 /* TheFootballers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheFootballers.entitlements; sourceTree = "<group>"; };
 		09632B661E3B7E860066CA09 /* TheFootballers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheFootballers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09632B691E3B7E860066CA09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09632B6B1E3B7E860066CA09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +46,12 @@
 		09632B701E3B7E860066CA09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09632B731E3B7E860066CA09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09632B751E3B7E860066CA09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09632B7B1E3B82F10066CA09 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09E56A471E43864A00E21FAB /* SignInToGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInToGroupViewController.swift; sourceTree = "<group>"; };
+		09E56A491E49B1CE00E21FAB /* GroupSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSelectionViewController.swift; sourceTree = "<group>"; };
+		379FAB6B21E17BBD56030CA0 /* Pods-TheFootballers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFootballers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheFootballers/Pods-TheFootballers.debug.xcconfig"; sourceTree = "<group>"; };
+		6353EFB574689C1D24D99B7D /* Pods-TheFootballers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFootballers.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheFootballers/Pods-TheFootballers.release.xcconfig"; sourceTree = "<group>"; };
+		7237AEE2DB29EB059317211C /* Pods_TheFootballers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheFootballers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA9C83BEF2523DAE73854B0B /* Pods_TheFootballers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +69,11 @@
 		09632B5D1E3B7E860066CA09 = {
 			isa = PBXGroup;
 			children = (
+				09632B7B1E3B82F10066CA09 /* GoogleService-Info.plist */,
 				09632B681E3B7E860066CA09 /* TheFootballers */,
 				09632B671E3B7E860066CA09 /* Products */,
+				35F7B95ABE59B80E09670D86 /* Pods */,
+				6BB284A1F857FDD290F2669F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +88,44 @@
 		09632B681E3B7E860066CA09 /* TheFootballers */ = {
 			isa = PBXGroup;
 			children = (
+				09490A0A1E40F4040054CF75 /* TheFootballers.entitlements */,
 				09632B691E3B7E860066CA09 /* AppDelegate.swift */,
 				09632B6B1E3B7E860066CA09 /* ViewController.swift */,
+				094909F31E3BD9B30054CF75 /* SignUpViewController.swift */,
+				09E56A471E43864A00E21FAB /* SignInToGroupViewController.swift */,
+				094909F91E3CC3110054CF75 /* HomePageViewController.swift */,
+				09E56A491E49B1CE00E21FAB /* GroupSelectionViewController.swift */,
+				094909FD1E3CD0EE0054CF75 /* AddAllPlayersViewController.swift */,
+				094909FF1E3E15320054CF75 /* CaptainsSelectViewController.swift */,
+				09490A011E3E35760054CF75 /* SelectPlayersViewController.swift */,
+				09490A031E3E37030054CF75 /* PlayersOnFieldViewController.swift */,
+				09490A051E3EA9A90054CF75 /* TimerViewController.swift */,
+				094909FB1E3CC5660054CF75 /* ExtensionUIView.swift */,
+				094909F71E3BF0870054CF75 /* Toast.swift */,
 				09632B6D1E3B7E860066CA09 /* Main.storyboard */,
 				09632B701E3B7E860066CA09 /* Assets.xcassets */,
 				09632B721E3B7E860066CA09 /* LaunchScreen.storyboard */,
 				09632B751E3B7E860066CA09 /* Info.plist */,
+				09490A071E406ADF0054CF75 /* TheFootballers-Bridging-Header.h */,
 			);
 			path = TheFootballers;
+			sourceTree = "<group>";
+		};
+		35F7B95ABE59B80E09670D86 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				379FAB6B21E17BBD56030CA0 /* Pods-TheFootballers.debug.xcconfig */,
+				6353EFB574689C1D24D99B7D /* Pods-TheFootballers.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6BB284A1F857FDD290F2669F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7237AEE2DB29EB059317211C /* Pods_TheFootballers.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +135,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09632B781E3B7E860066CA09 /* Build configuration list for PBXNativeTarget "TheFootballers" */;
 			buildPhases = (
+				6804C9AE9F1EF7E9279B29ED /* [CP] Check Pods Manifest.lock */,
 				09632B621E3B7E860066CA09 /* Sources */,
 				09632B631E3B7E860066CA09 /* Frameworks */,
 				09632B641E3B7E860066CA09 /* Resources */,
+				4C51AE52CD66FB500D955F5C /* [CP] Embed Pods Frameworks */,
+				057AB1694A0E474EF5D33B20 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,7 +163,14 @@
 				TargetAttributes = {
 					09632B651E3B7E860066CA09 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = JK44M5TXNW;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09632B741E3B7E860066CA09 /* LaunchScreen.storyboard in Resources */,
+				09632B7C1E3B82F10066CA09 /* GoogleService-Info.plist in Resources */,
 				09632B711E3B7E860066CA09 /* Assets.xcassets in Resources */,
 				09632B6F1E3B7E860066CA09 /* Main.storyboard in Resources */,
 			);
@@ -131,12 +206,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		057AB1694A0E474EF5D33B20 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheFootballers/Pods-TheFootballers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C51AE52CD66FB500D955F5C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TheFootballers/Pods-TheFootballers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6804C9AE9F1EF7E9279B29ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		09632B621E3B7E860066CA09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E56A4A1E49B1CE00E21FAB /* GroupSelectionViewController.swift in Sources */,
+				094909FC1E3CC5660054CF75 /* ExtensionUIView.swift in Sources */,
+				094909F41E3BD9B30054CF75 /* SignUpViewController.swift in Sources */,
+				094909FE1E3CD0EE0054CF75 /* AddAllPlayersViewController.swift in Sources */,
+				09490A001E3E15320054CF75 /* CaptainsSelectViewController.swift in Sources */,
+				09490A021E3E35760054CF75 /* SelectPlayersViewController.swift in Sources */,
+				094909F81E3BF0870054CF75 /* Toast.swift in Sources */,
 				09632B6C1E3B7E860066CA09 /* ViewController.swift in Sources */,
+				09490A041E3E37030054CF75 /* PlayersOnFieldViewController.swift in Sources */,
+				094909FA1E3CC3110054CF75 /* HomePageViewController.swift in Sources */,
+				09E56A481E43864A00E21FAB /* SignInToGroupViewController.swift in Sources */,
+				09490A061E3EA9A90054CF75 /* TimerViewController.swift in Sources */,
 				09632B6A1E3B7E860066CA09 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,24 +390,37 @@
 		};
 		09632B791E3B7E860066CA09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379FAB6B21E17BBD56030CA0 /* Pods-TheFootballers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TheFootballers/TheFootballers.entitlements;
+				DEVELOPMENT_TEAM = JK44M5TXNW;
 				INFOPLIST_FILE = TheFootballers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ran.TheFootballers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheFootballers/TheFootballers-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		09632B7A1E3B7E860066CA09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6353EFB574689C1D24D99B7D /* Pods-TheFootballers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TheFootballers/TheFootballers.entitlements;
+				DEVELOPMENT_TEAM = JK44M5TXNW;
 				INFOPLIST_FILE = TheFootballers/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ran.TheFootballers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TheFootballers/TheFootballers-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -297,6 +444,7 @@
 				09632B7A1E3B7E860066CA09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

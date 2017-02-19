@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
 
+    override init() {
+        super.init()
+        // Use Firebase library to configure APIs
+        FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
         return true
     }
 
@@ -40,7 +53,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url,
+                                                    sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                    annotation: [:])
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        let authentication = user.authentication
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        // ...
+        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+            // ...
+            print("User got Signed in Firebase")
+            self.handleLogin()
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // i'll sign out user later
+        print("im out google from app delegate")
+        handleLogOut()
+    }
+    
+    func handleLogin(){
+        showSignInToGroupViewController()
+    }
+    
+    func showSignInToGroupViewController(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let PostView: AnyObject! = storyboard.instantiateViewController(withIdentifier: "AfterLoginVC")
+        
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        rootViewController.pushViewController(PostView as! UIViewController, animated: true)
+        print("im in SignInToGroupVC from appdelegate")
+        
+    }
+    
+    func handleLogOut(){
+        GIDSignIn.sharedInstance().signOut()
+        print("sign out google from appDelegate")
+        try! FIRAuth.auth()?.signOut()
+        print("sign out firebase from appDelegate")
+        showLogginViewController()
+        
+    }
+    
+    func showLogginViewController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let PostView: AnyObject! = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+        
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        rootViewController.pushViewController(PostView as! UIViewController, animated: true)
+        print("move back to sign in vc from app delegate")
+    }
 
 }
-
