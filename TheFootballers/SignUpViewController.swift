@@ -15,10 +15,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txtPass: UITextField!
     @IBOutlet weak var txtConfirmPass: UITextField!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 }
     
     @IBAction func btnSignUp(_ sender: UIButton) {
@@ -64,14 +62,5 @@ class SignUpViewController: UIViewController {
         }
         
     }
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "toSignInToGroupViewController"{
-            let nextScrn = segue.destination as! SignInToGroupViewController;
-            nextScrn.setMsg();
-        }
-    }
- */
 
 }

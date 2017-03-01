@@ -30,6 +30,7 @@ class GroupSelectionViewController: UIViewController, UITableViewDataSource {
     fileprivate var ref = FIRDatabase.database().reference()
     fileprivate var refSelection: FIRDatabaseReference!
     fileprivate var refPlayersInTeams: FIRDatabaseReference!
+    fileprivate var refTeamsNameByCaptains: FIRDatabaseReference!
     
     fileprivate let myGroupPlayers = DispatchGroup()
     fileprivate let myGroupTeams = DispatchGroup()
@@ -63,6 +64,7 @@ class GroupSelectionViewController: UIViewController, UITableViewDataSource {
         
         refSelection = ref.child("Groups").child(groupNameForViewSelection!).child("selection")
         refPlayersInTeams = ref.child("Groups").child(groupNameForViewSelection!).child("PlayersInTeams")
+        refTeamsNameByCaptains = ref.child("Groups").child(groupNameForViewSelection!).child("TeamsNameByCaptains")
         
         currentTeamWithPlayers = [" "]
         getAllTeamsNameFromFirebaseToTeamsNameArr()
@@ -139,10 +141,6 @@ class GroupSelectionViewController: UIViewController, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let playerNameInCell = self.currentTeamWithPlayers[indexPath.row]
-        //let cell = UITableViewCell();
-        //cell.textLabel!.text = playerNameInCell
-        //return cell
         return tblPlayers.cellDecoration(currentTeamWithPlayers, cellForRowAtIndexPath: indexPath)
     }
     
@@ -151,10 +149,10 @@ class GroupSelectionViewController: UIViewController, UITableViewDataSource {
         var tempTeamsNameArr = [String]()
         
         self.myGroupPlayers.enter()
-        refPlayersInTeams.observeSingleEvent(of: .value, with: { (snapshot) in
+        refTeamsNameByCaptains.observeSingleEvent(of: .value, with: { (snapshot) in
             // get teams name
             for (teamIndex, team) in snapshot.children.enumerated() {
-                let teamName = (team as AnyObject).key!
+                let teamName = ((team as AnyObject).value) as String
                 tempTeamsNameArr.append(teamName)
                 print("teamName \(teamIndex): \(teamName)")
                 
@@ -203,7 +201,7 @@ class GroupSelectionViewController: UIViewController, UITableViewDataSource {
         
     }
     // This func isn't in use -> it's iterate data from firebase: teams->positions->players
-    //In future try to present players in tbl section of position
+    //In future try to present players in tbl with section of position
     private func iterationInFirebase(){
     
         refSelection.observeSingleEvent(of: .value, with: { (snapshot) in

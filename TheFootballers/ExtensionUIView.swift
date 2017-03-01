@@ -20,6 +20,7 @@ extension UIView {
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false // <- make touches event in view available (such as rows in tbl, buttons and etc)
         view.addGestureRecognizer(tap)
     }
     
@@ -55,7 +56,7 @@ extension UITableView{
         return cell;
     }
     func headerRanDesigned(viewForHeaderInSection section: Int, position:[String]) -> UIView? {
-        let title: UILabel = UILabel()
+        let title = UILabel()
         
         title.text = position[section]
         title.textAlignment = .center

@@ -32,6 +32,8 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
     fileprivate var currentPlayerChooseInRow:String = ""
     fileprivate var playersDeletedFromTbl:[String:[String]] = [:]
     
+    fileprivate var teamsObjArr:[[String:[String]]] = []
+    
     fileprivate var firstTeamOnField:[String:String] = [:]
     fileprivate var secondTeamOnField:[String:String] = [:]
     fileprivate var thirdTeamOnField:[String:String] = [:]
@@ -39,6 +41,7 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
     
     fileprivate var currentTeamChoosen:[String:[String]] = [:]
     fileprivate var teamChoosen:String!
+    fileprivate let teamNumStrChoosenArr = ["firstTeam", "secondTeam", "thirdTeam", "fourthTeam"]
     
     fileprivate var colors = [UIColor.blue, UIColor(red: 0/255, green:153/255 ,blue:51/255 , alpha:1), UIColor.orange, UIColor.brown]
     
@@ -64,7 +67,8 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
         refGroup = ref.child("Groups").child(groupNameStr)
         refPlayersByDivideToTeams = ref.child("Groups").child(groupNameStr).child("selection")
         
-        //TODO: CREATE DIALOG THAT SAVE PLAYERS IN TEAM BY POSITION -> USER CAN VIEW THE CAPTAIN SELECTION FROM HOME PAGE
+        //Dialog give the option to save players of each team by position in firebase
+        // USERS WILL CAN VIEW THE CAPTAIN SELECTION FROM HOME PAGE
         let dialog = UIAlertController(title: "Save and allow to all group to see the selection players result?", message: "YES -> for save selection, NO -> stay with the previous players selection saved", preferredStyle: .alert);
         
         //Add Positive handler
@@ -103,7 +107,7 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
                 var playerNum = 1
                 for pos in position{
                     for playerName in team[pos]!{ // [pos String: [players Arr]]
-                        refGroup.child("PlayersInTeams").child(teamsName[index]).child("\(playerNum)").setValue(playerName)
+                        refGroup.child("PlayersInTeams").child(teamsNameByNum[index]).child("\(playerNum)").setValue(playerName)
                         print("team name: \(teamsNameByNum[index]) , player Number: \(playerNum), name: \(playerName)")
                         playerNum += 1
                     }
@@ -129,11 +133,12 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
         teamChoosen = "firstTeam"
     }
     
-    func setMsg(_ firstTeam:[String:[String]], secondTeam:[String:[String]], thirdTeam:[String:[String]], fourthTeam:[String:[String]], captainsName:[String], position:[String], choosenCaptainsByPosition:[String:[String]], groupName:String){
-        self.firstTeam = firstTeam
-        self.secondTeam = secondTeam
-        self.thirdTeam = thirdTeam
-        self.fourthTeam = fourthTeam
+    func setMsg(teamsObjArr:[[String:[String]]], captainsName:[String], position:[String], choosenCaptainsByPosition:[String:[String]], groupName:String){
+        self.firstTeam = teamsObjArr[0]
+        self.secondTeam = teamsObjArr[1]
+        self.thirdTeam = teamsObjArr[2]
+        self.fourthTeam = teamsObjArr[3]
+        self.teamsObjArr = teamsObjArr
         self.captainsName = captainsName
         self.position = position
         self.choosenCaptainsByPosition = choosenCaptainsByPosition
@@ -144,13 +149,13 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
     
     var currentPositionTapped:String!
     
-    //if user click on player in cell from tbl and then click/tap on label in field -> the position name will change to the name in cell picked.. if there is already a name in the label -> when user tap on it the name go back to tbl and at the label it will change to position name
+    //click on player from tbl and then click/tap on label in field -> the position title will change to the name in cell picked.. if there is already a name in the label -> when user tap on it the name go back to tbl and at the label it will change to position title
     func lblTappedInPositionOnField(_ positionTapped:UILabel){
         let tempNameInLbl = positionTapped.text
         transferPositionTappedToStr(positionTapped)
         
         if currentPlayerChooseInRow != ""{ // if user clicked on player row in tbl
-            if tempNameInLbl == currentPositionTapped{ //if the name in label clicked equal to position name
+            if tempNameInLbl == currentPositionTapped{ //if the name in label clicked equal to position title
                 if teamChoosen == "firstTeam"{
                     firstTeamOnField[currentPositionTapped] = self.currentPlayerChooseInRow
                     currentTeamOnFieldNames(firstTeamOnField)
@@ -261,11 +266,9 @@ class PlayersOnFieldViewController: UIViewController, UITableViewDataSource, UIT
     
     // when user click on captain name button -> the tbl updated with the players from his team
     func currentTeamPlayersByPositionOnTbl(_ teamChoosenArr:[String:[String]], teamIndex:Int){
-        //let teamArrToTeamStr = [firstTeam:"firstTeam", secondTeam:"secondTeam", thirdTeam:"thirdTeam", fourthTeam:"fourthTeam"]
-        let teamsArr = ["firstTeam", "secondTeam", "thirdTeam", "fourthTeam"]
         currentPlayerChooseInRow = ""
         currentTeamChoosen = teamChoosenArr
-        teamChoosen = teamsArr[teamIndex]
+        self.teamChoosen = self.teamNumStrChoosenArr[teamIndex] //teamNumStrChoosenArr
         tbl.reloadData()
     }
     

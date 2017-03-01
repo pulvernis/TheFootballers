@@ -68,11 +68,6 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    func setMsg(){
-        
-    }
-    
-    
     @IBAction func btnSignIn(_ sender: UIButton) {
         groupNameStr = txtGroupName.text!
         groupPassStr = txtGroupPass.text!
@@ -83,7 +78,6 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
             refGroup.observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if snapshot.hasChild(self.groupNameStr){
-                    
                     self.refGroup.child(self.groupNameStr).child("Password").observeSingleEvent(of: .value, with: { (snapshot) in
                         if(snapshot.value as! String == self.groupPassStr){
                             self.performSegue(withIdentifier: "toHomePage", sender: self)
@@ -93,20 +87,14 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
                         }
                     })
                     
-                    
-                    
                 }else{
                     self.view.makeToast("\(self.groupNameStr!) doesn't exist", duration: 3.0, position: .center)
                     print("\(self.groupNameStr!) doesn't exist")
-                    
                 }
-                
                 
             })
 
-            
         }
-
         
     }
     
@@ -140,9 +128,7 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
                     self.txtGroupPass.text = ""
                 }
                 
-                
             })
-            
             
         }
     }
@@ -174,9 +160,6 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSignIn"{
             let firebaseAuth = FIRAuth.auth()
@@ -211,13 +194,6 @@ class SignInToGroupViewController: UIViewController, UITextFieldDelegate {
             nextScrn.setMsg(groupName: groupNameForViewSelectionStr);
         }
         
-        //if segue.identifier == "toViewGroupSelection"{
-          //  var DestViewController = segue.destination as! UINavigationController
-            //let targetController = DestViewController.topViewController as! GroupSelectionViewController
-            //targetController.data = "hello from ReceiveVC !"
-        //}
-        
     }
     
-
 }

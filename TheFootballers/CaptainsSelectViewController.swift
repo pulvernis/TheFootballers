@@ -1,5 +1,4 @@
 import UIKit
-import Firebase
 
 class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -24,18 +23,19 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
     fileprivate var colors = [UIColor.blue, UIColor.green, UIColor.orange, UIColor.brown]
     fileprivate var numInColorsArray = 0
     fileprivate let prefs = UserDefaults.standard;
-    fileprivate var allPlayersNamesPreviousSave:[String] = []
-    
-    fileprivate var rootRef = FIRDatabase.database().reference()
-    fileprivate var refAllPlayers: FIRDatabaseReference!
     
     fileprivate var groupNameStr: String?
     
     override func viewDidLoad() {
         
-        refAllPlayers = rootRef.child("Groups").child(groupNameStr!).child("AllPlayers")
+        allPlayersTbl.allowsSelection = false
         
-        // screen width and height:
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 120, 40, 0)
+        UIView.animate(withDuration: 1.5, animations: {() -> Void in
+            self.allPlayersTbl.layer.transform = rotationTransform
+        })
+        
+        // width and height for imageViewBackground:
         let width = view.frame.width*0.2
         let height = view.frame.height*0.2
         
@@ -53,36 +53,25 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
         lastY = view.frame.size.height*0.3;//starting height position for first label of captain name
         nextBarBtn.isEnabled = false;
         
-        // ***** UPLOAD And Overwrite ALL ADDED PLAYERS TO GROUP IN FIREBASE *****
-        for pos in position{
-            var numPlayerInPosition = 1
-            for player in allPlayersByPosition[pos]!{
-                refAllPlayers.child(pos).child(player).setValue(numPlayerInPosition)
-                numPlayerInPosition += 1
-            }
-        }
-        
         if(prefs.value(forKey: "allPlayersNames") != nil){
-            self.allPlayersNamesPreviousSave = prefs.value(forKey: "allPlayersNames")! as! [String]
-        }else{
-            allPlayersNamesPreviousSave = [""]
+            let allPlayersNamesPreviousSave = prefs.value(forKey: "allPlayersNames")! as! [String]
+            //UIAlert - ask user if he want to save the new added players in NSUserDefaults or stay with the previous players
+            if allPlayersNames != allPlayersNamesPreviousSave{ // <- show alert only if there is changes in adding players
+                let dialog = UIAlertController(title: "Save the added players for next time?", message: "YES -> for saving, NO -> stay with the previous players saved", preferredStyle: .alert);
+                
+                //Add Positive handler
+                func okHandler(_ t:UIAlertAction){
+                    //Add to userDefault
+                    prefs.setValue(allPlayersByPosition, forKey: "allPlayersDivideByPosition")
+                    prefs.setValue(self.allPlayersNames, forKey: "allPlayersNames")
+                    
+                }
+                dialog.addAction(UIAlertAction(title: "YES", style: .cancel, handler: okHandler));
+                dialog.addAction(UIAlertAction(title: "NO", style: .default, handler: nil));
+                present(dialog, animated: true, completion: nil);
+            }
         }
         
-        //UIAlert - ask user if he want to save the new players in NSUserDefaults or stay with the previous
-        if allPlayersNames != allPlayersNamesPreviousSave{ // <- show alert only if there is changes in adding players
-            let dialog = UIAlertController(title: "Save the added players for next time?", message: "YES -> for saving, NO -> stay with the previous players saved", preferredStyle: .alert);
-            
-            //Add Positive handler
-            func okHandler(_ t:UIAlertAction){
-                //Add to userDefault
-                prefs.setValue(allPlayersByPosition, forKey: "allPlayersDivideByPosition")
-                prefs.setValue(self.allPlayersNames, forKey: "allPlayersNames")
-                
-            }
-            dialog.addAction(UIAlertAction(title: "YES", style: .cancel, handler: okHandler));
-            dialog.addAction(UIAlertAction(title: "NO", style: .default, handler: nil));
-            present(dialog, animated: true, completion: nil);
-        }
     }
     
     func setMsg(_ allPlayersByPosition:[String:[String]], position:[String], allPlayersNames:[String], groupName:String){
@@ -106,7 +95,7 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
         teamsNumLabel.isHidden = true;
         teamsNumTitle.isHidden = true;
         confirmNumTeamsBtn.isHidden = true;
-        allPlayersTbl.isHidden = false;
+        allPlayersTbl.allowsSelection = true
         teamsNumTitleChange.isHidden = false;
         teamsNumTitleChange.text = "\(numOfTeamsInSlider) Teams";
         teamsNumTitleChange.textColor = UIColor.brown;
@@ -124,6 +113,10 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
         return tableView.headerRanDesigned(viewForHeaderInSection: section, position: position)
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     //how many rows in each sub list
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allPlayersByPosition[position[section]]!.count;
@@ -138,7 +131,7 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
         if choosenCaptains.count<numOfTeamsInSlider{
             //add selected captain in row from table to choosenCaptains array
             choosenCaptains.append(allPlayersByPosition[position[indexPath.section]]![indexPath.row]);
-            //create labels with captains as the numberOfTeamsInSlider
+            //create labels with captains as numberOfTeamsInSlider
             var ttl:UILabel;
             let point = CGPoint(x: tableView.frame.size.width, y: lastY)
             let size = CGSize(width: tableView.frame.size.width*0.9, height: view.frame.size.height*0.05)
@@ -147,13 +140,12 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
             ttl.text = allPlayersByPosition[position[indexPath.section]]![indexPath.row];
             ttl.textAlignment = .center;
             ttl.textColor = colors[numInColorsArray];
-            //ttl.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 255/255, alpha: 1)
             ttl.font = UIFont(name: "Futura", size: 15)
             view.addSubview(ttl);
             self.lastY=lastY+ttl.frame.size.height*1.2; //lastY grow
             self.numInColorsArray += 1;
             
-            //delete choosen captains from array and reload tableView
+            //delete choosen captains from array and from tableView and add him to choosenCaptainsByPosition Array
             var playersTemp:[String:[String]] = [position[0]:[], position[1]:[], position[2]:[], position[3]:[]];
             for p in position{
                 for player in allPlayersByPosition[p]!{
@@ -161,12 +153,10 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
                         playersTemp[p]?.append(player);
                     }else{
                         choosenCaptainsByPosition[p]?.append(player);
-                        
                     }
                 }
             }
             self.allPlayersByPosition = playersTemp;
-            //tableView.reloadData();
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         //Add confirm button when user choose all captains .. show proceed button
@@ -177,17 +167,13 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
-        cell.layer.transform = rotationTransform
         
-        UIView.animate(withDuration: 1, animations: {() -> Void in
-            cell.layer.transform = CATransform3DIdentity
-        })
+        
     }
     
     @IBAction func infoBtn(_ sender: UIButton) {
         //build in Alert Dialog with UIAlertController object
-        let dialog = UIAlertController(title: "Choose Captains", message: "First.. choose by the slider the number of teams participate and press confirm\nNow the all players table is shown in the left side..\nSlide in the table and by click on player in cell he will remove from table to the right side (under the Captain Selected title)/n after choosing captain as number of teams, Next button will appear on the top right screen.. press him to move on", preferredStyle: .alert);
+        let dialog = UIAlertController(title: "Choose Captains", message: "First.. choose by the slider the number of teams participate and press confirm\nNow the players table is clickable,\nChoose player and he will remove from table to the right side (under the Captain Selected title)/n after selecting number of captains as number of teams participate, 'Next' button, on the top right screen, will became blue.. press it to move on", preferredStyle: .alert);
         //add default button to dialog
         let btnAction=UIAlertAction(title: "OK", style: .cancel, handler: nil);
         dialog.addAction(btnAction);
@@ -195,31 +181,10 @@ class CaptainsSelectViewController: UIViewController, UITableViewDataSource, UIT
         present(dialog, animated: true, completion: nil);
     }
     
-    
-    func getChoosenCaptainsByPosition()->[String:[String]]{
-        return self.choosenCaptainsByPosition;
-    }
-    
-    func getCaptainsName()->[String]{
-        return self.choosenCaptains;
-    }
-    
-    func getAllPlayerByPosition() -> [String:[String]]{
-        return self.allPlayersByPosition;
-    }
-    
-    func getPositions() -> [String]{
-        return self.position;
-    }
-    
-    func numOfTeams()->Int{
-        return self.numOfTeamsInSlider;
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSelectPlayers"{
             let nextScr = segue.destination as! SelectPlayersViewController
-            nextScr.setMsg(getAllPlayerByPosition(), position: getPositions(), choosenCaptainsByPosition: getChoosenCaptainsByPosition(), numOfTeams: numOfTeams(), captainsName: getCaptainsName(), groupName: groupNameStr!);
+            nextScr.setMsg(self.allPlayersByPosition, position: self.position, choosenCaptainsByPosition: self.choosenCaptainsByPosition, numOfTeams: self.numOfTeamsInSlider, captainsName: self.choosenCaptains, groupName: groupNameStr!);
         }
     }
     

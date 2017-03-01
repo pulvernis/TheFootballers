@@ -32,8 +32,6 @@ class HomePageViewController: UITableViewController {
             uploadPlayersCell.isHidden = false;
         }
         
-        
-        
         self.view.addBackground("fb.png") // <- from ExtensionUIView
     }
     
@@ -43,7 +41,6 @@ class HomePageViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if (prefs.value(forKey: "allPlayersDivideByPosition") != nil){
-            //uploadPlayersCell.hidden = false; <- removed to viewDidLoad -> checked only once
             self.allPlayersDivideByPosition = prefs.value(forKey: "allPlayersDivideByPosition")! as! [String:[String]];
             self.allPlayersNames = prefs.value(forKey: "allPlayersNames")! as! [String]
         }else{
